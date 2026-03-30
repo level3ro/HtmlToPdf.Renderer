@@ -10,7 +10,7 @@ public sealed class HtmlContainer : IDisposable
 {
     private readonly HtmlContainerInt _containerInt;
 
-    public HtmlContainer(PdfSharpAdapter adapter)
+    public HtmlContainer(RenderAdapter adapter)
     {
         _containerInt = new HtmlContainerInt(adapter);
     }

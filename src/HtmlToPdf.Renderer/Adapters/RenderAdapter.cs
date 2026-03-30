@@ -5,13 +5,13 @@ using TheArtOfDev.HtmlRenderer.Adapters.Entities;
 
 namespace HtmlToPdf.Renderer.Adapters;
 
-public sealed class PdfSharpAdapter : RAdapter
+public sealed class RenderAdapter : RAdapter
 {
-    private static readonly Lazy<PdfSharpAdapter> _instance = new(() => new PdfSharpAdapter());
+    private static readonly Lazy<RenderAdapter> _instance = new(() => new RenderAdapter());
 
-    public static PdfSharpAdapter Instance => _instance.Value;
+    public static RenderAdapter Instance => _instance.Value;
 
-    static PdfSharpAdapter()
+    static RenderAdapter()
     {
         // PdfSharp 6.2.x cross-platform build requires explicit font resolver config.
         // Enable system font resolution on Windows; other platforms need a custom IFontResolver.
@@ -19,7 +19,7 @@ public sealed class PdfSharpAdapter : RAdapter
         GlobalFontSettings.UseWindowsFontsUnderWindows = true;
     }
 
-    private PdfSharpAdapter() { }
+    private RenderAdapter() { }
 
     protected override RColor GetColorInt(string colorName)
     {
@@ -36,7 +36,7 @@ public sealed class PdfSharpAdapter : RAdapter
 
     protected override RBrush CreateSolidBrush(RColor color)
     {
-        return new PdfSharpBrushAdapter(new XSolidBrush(ToXColor(color)));
+        return new BrushAdapter(new XSolidBrush(ToXColor(color)));
     }
 
     protected override RBrush CreateLinearGradientBrush(RRect rect,
@@ -45,7 +45,7 @@ public sealed class PdfSharpAdapter : RAdapter
         var xBrush = new XLinearGradientBrush(
             new XRect(rect.X, rect.Y, rect.Width, rect.Height),
             ToXColor(color1), ToXColor(color2), XLinearGradientMode.Horizontal);
-        return new PdfSharpBrushAdapter(xBrush);
+        return new BrushAdapter(xBrush);
     }
 
     protected override RImage ConvertImageInt(object image)

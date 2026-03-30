@@ -3,7 +3,7 @@ using PdfSharp.Drawing;
 
 namespace HtmlToPdf.Renderer.Tests.Adapters;
 
-public class PdfSharpFontAdapterTests
+public class FontAdapterTests
 {
     [Fact]
     public void Size_ReturnsXFontSize()

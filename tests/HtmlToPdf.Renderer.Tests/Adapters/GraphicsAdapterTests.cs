@@ -5,14 +5,14 @@ using TheArtOfDev.HtmlRenderer.Adapters.Entities;
 
 namespace HtmlToPdf.Renderer.Tests.Adapters;
 
-public class PdfSharpGraphicsAdapterTests
+public class GraphicsAdapterTests
 {
     private GraphicsAdapter CreateAdapter(out XGraphics xGraphics)
     {
         var doc = new PdfDocument();
         var page = doc.AddPage();
         xGraphics = XGraphics.FromPdfPage(page);
-        var adapter = PdfSharpAdapter.Instance;
+        var adapter = RenderAdapter.Instance;
         return new GraphicsAdapter(xGraphics, adapter,
             new RRect(0, 0, page.Width.Point, page.Height.Point));
     }
@@ -73,7 +73,7 @@ public class PdfSharpGraphicsAdapterTests
     public void DrawRectangle_WithBrush_DoesNotThrow()
     {
         using var ga = CreateAdapter(out _);
-        var brush = new PdfSharpBrushAdapter(new XSolidBrush(XColors.Red));
+        var brush = new BrushAdapter(new XSolidBrush(XColors.Red));
         var ex = Record.Exception(() => ga.DrawRectangle(brush, 10, 10, 50, 50));
         Assert.Null(ex);
     }
@@ -113,7 +113,7 @@ public class PdfSharpGraphicsAdapterTests
         var doc = new PdfDocument();
         var page = doc.AddPage();
         var xg = XGraphics.FromPdfPage(page);
-        var ga = new GraphicsAdapter(xg, PdfSharpAdapter.Instance,
+        var ga = new GraphicsAdapter(xg, RenderAdapter.Instance,
             new RRect(0, 0, page.Width.Point, page.Height.Point));
         ga.Dispose();
         // XGraphics should still be usable after adapter disposal

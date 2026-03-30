@@ -56,7 +56,7 @@ internal sealed class GraphicsAdapter : RGraphics
     public override RBrush GetTextureBrush(RImage image, RRect dstRect, RPoint offset)
     {
         // PdfSharp 6.x has no XTextureBrush — return transparent brush.
-        return new PdfSharpBrushAdapter(new XSolidBrush(XColors.Transparent));
+        return new BrushAdapter(new XSolidBrush(XColors.Transparent));
     }
 
     public override RGraphicsPath GetGraphicsPath()
@@ -104,7 +104,7 @@ internal sealed class GraphicsAdapter : RGraphics
         RPoint point, RSize size, bool rtl)
     {
         var xFont = ((FontAdapter)font).XFont;
-        var xBrush = new XSolidBrush(PdfSharpAdapter.ToXColor(color));
+        var xBrush = new XSolidBrush(RenderAdapter.ToXColor(color));
         var format = new XStringFormat
         {
             Alignment = rtl ? XStringAlignment.Far : XStringAlignment.Near,
@@ -127,7 +127,7 @@ internal sealed class GraphicsAdapter : RGraphics
     public override void DrawRectangle(RBrush brush, double x, double y,
         double width, double height)
     {
-        _xGraphics.DrawRectangle(((PdfSharpBrushAdapter)brush).XBrush, x, y, width, height);
+        _xGraphics.DrawRectangle(((BrushAdapter)brush).XBrush, x, y, width, height);
     }
 
     public override void DrawImage(RImage image, RRect destRect)
@@ -163,7 +163,7 @@ internal sealed class GraphicsAdapter : RGraphics
 
     public override void DrawPath(RBrush brush, RGraphicsPath path)
     {
-        _xGraphics.DrawPath(((PdfSharpBrushAdapter)brush).XBrush,
+        _xGraphics.DrawPath(((BrushAdapter)brush).XBrush,
             ((PathAdapter)path).XGraphicsPath);
     }
 
@@ -172,7 +172,7 @@ internal sealed class GraphicsAdapter : RGraphics
         var xPoints = new XPoint[points.Length];
         for (int i = 0; i < points.Length; i++)
             xPoints[i] = new XPoint(points[i].X, points[i].Y);
-        _xGraphics.DrawPolygon(((PdfSharpBrushAdapter)brush).XBrush,
+        _xGraphics.DrawPolygon(((BrushAdapter)brush).XBrush,
             xPoints, XFillMode.Winding);
     }
 

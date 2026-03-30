@@ -4,7 +4,7 @@ using TheArtOfDev.HtmlRenderer.Adapters.Entities;
 
 namespace HtmlToPdf.Renderer.Tests.Adapters;
 
-public class PdfSharpPenAdapterTests
+public class PenAdapterTests
 {
     [Fact]
     public void Constructor_WrapsXPen()

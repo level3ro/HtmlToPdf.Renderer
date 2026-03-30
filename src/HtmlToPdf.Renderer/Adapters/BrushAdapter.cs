@@ -3,11 +3,11 @@ using TheArtOfDev.HtmlRenderer.Adapters;
 
 namespace HtmlToPdf.Renderer.Adapters;
 
-public sealed class PdfSharpBrushAdapter : RBrush
+public sealed class BrushAdapter : RBrush
 {
     internal XBrush XBrush { get; }
 
-    public PdfSharpBrushAdapter(XBrush brush)
+    public BrushAdapter(XBrush brush)
     {
         XBrush = brush;
     }

@@ -3,7 +3,7 @@ using PdfSharp.Drawing;
 
 namespace HtmlToPdf.Renderer.Tests.Adapters;
 
-public class PdfSharpImageAdapterTests
+public class ImageAdapterTests
 {
     [Fact]
     public void WidthAndHeight_DelegateToXImage()

@@ -4,7 +4,7 @@ using TheArtOfDev.HtmlRenderer.Adapters;
 
 namespace HtmlToPdf.Renderer.Tests.Adapters;
 
-public class PdfSharpPathAdapterTests
+public class PathAdapterTests
 {
     [Fact]
     public void Start_LineTo_CreatesPath()
