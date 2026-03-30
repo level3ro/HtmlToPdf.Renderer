@@ -14,6 +14,14 @@ public static class PdfGenerator
         return document;
     }
 
+    public static async Task<byte[]> GeneratePdfAsync(string html, PdfGenerateConfig config)
+    {
+        using var document = GeneratePdf(html, config);
+        using var stream = new MemoryStream();
+        await document.SaveAsync(stream, false);
+        return stream.ToArray();
+    }
+
     public static void AddPdfPages(PdfDocument document, string html, PdfGenerateConfig config)
     {
         var adapter = RenderAdapter.Instance;
