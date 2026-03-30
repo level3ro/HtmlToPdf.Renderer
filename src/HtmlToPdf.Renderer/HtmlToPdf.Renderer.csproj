@@ -3,11 +3,18 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>portable</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <Nullable>enable</Nullable>
     <PackageId>HtmlToPdf.Renderer</PackageId>
     <Description>HTML to PDF converter using PdfSharp and HtmlRenderer.Core</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Authors>Level3</Authors>
+    <RepositoryUrl>https://github.com/level3ro/HtmlToPdf.Renderer</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
