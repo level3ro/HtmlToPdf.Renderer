@@ -3,9 +3,6 @@ using HtmlToPdf.Renderer;
 var outputDir = Path.Combine(AppContext.BaseDirectory, "output");
 Directory.CreateDirectory(outputDir);
 
-var config = new PdfGenerateConfig();
-config.SetMargins(40);
-
 var html = """
     <div style="font-family: Arial; padding: 10px;">
         <h1 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px;">
@@ -50,9 +47,13 @@ var html = """
     </div>
     """;
 
-var pdf = PdfGenerator.GeneratePdf(html, config);
 var pdfPath = Path.Combine(outputDir, "demo.pdf");
-await pdf.SaveAsync(pdfPath);
+var bytes = await PdfGenerator.Create()
+    .WithPageSize(PageSize.A4)
+    .WithMargin(40)
+    .GeneratePdfAsync(html);
+
+await File.WriteAllBytesAsync(pdfPath, bytes);
 Console.WriteLine($"Created: {pdfPath}");
 
 Console.WriteLine("\nDone! PDF saved to: " + outputDir);

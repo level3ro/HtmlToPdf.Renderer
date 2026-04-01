@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Windows;
 using HtmlToPdf.Renderer;
 using Microsoft.Win32;
-using PdfSharp.Drawing;
 
 namespace HtmlToPdf.WpfDemo;
 
@@ -55,17 +54,17 @@ public partial class MainWindow : Window
         }
     }
 
-    private PdfGenerateConfig BuildConfig()
+    private PdfOptions BuildConfig()
     {
-        var config = new PdfGenerateConfig();
+        var config = new PdfOptions();
 
         config.PageSize = (PageSizeCombo.SelectedIndex) switch
         {
-            0 => PdfGenerateConfig.PageSizes.A4,
-            1 => PdfGenerateConfig.PageSizes.Letter,
-            2 => PdfGenerateConfig.PageSizes.Legal,
-            3 => PdfGenerateConfig.PageSizes.A3,
-            _ => PdfGenerateConfig.PageSizes.A4
+            0 => PageSize.A4,
+            1 => PageSize.Letter,
+            2 => PageSize.Legal,
+            3 => PageSize.A3,
+            _ => PageSize.A4
         };
 
         config.PageOrientation = OrientationCombo.SelectedIndex == 0
