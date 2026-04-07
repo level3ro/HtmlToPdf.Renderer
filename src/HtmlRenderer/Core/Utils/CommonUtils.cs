@@ -222,7 +222,7 @@ namespace TheArtOfDev.HtmlRenderer.Core.Utils
             }
 
             string uriUntilSlash = absoluteUri.Substring(0, lastSlash);
-            fileNameBuilder.Append(uriUntilSlash.GetHashCode().ToString());
+            fileNameBuilder.Append(uriUntilSlash.GetHashCode());
             fileNameBuilder.Append('_');
 
             string restOfUri = absoluteUri.Substring(lastSlash + 1);

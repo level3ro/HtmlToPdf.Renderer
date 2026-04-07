@@ -43,6 +43,12 @@ public sealed class PdfBuilder
         return this;
     }
 
+    public PdfBuilder WithFont(string familyName, byte[] fontData)
+    {
+        FontResolver.Instance.RegisterFont(familyName, fontData);
+        return this;
+    }
+
     public PdfDocument GeneratePdf(string html)
     {
         return PdfGenerator.GeneratePdf(html, _options);
